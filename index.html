@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPL League Data</title>
+</head>
+<body>
+    <h1>FPL League Data Downloader</h1>
+    <form action="/download" method="post">
+        <label for="league_code">League Code:</label>
+        <input type="text" id="league_code" name="league_code" required>
+        <br><br>
+        <label for="gameweek">Specific Gameweek (optional):</label>
+        <input type="number" id="gameweek" name="gameweek" min="1" max="38">
+        <br><br>
+        <button type="submit">Download Excel</button>
+    </form>
+</body>
+</html>
