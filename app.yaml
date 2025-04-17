@@ -1,0 +1,10 @@
+runtime: python310  # Specify the Python runtime
+entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app
+
+# Optional: Environment variables
+env_variables:
+  FLASK_ENV: production
+  SECRET_KEY: "your-secret-key"
+
+# Optional: Instance class for scaling
+instance_class: F2
