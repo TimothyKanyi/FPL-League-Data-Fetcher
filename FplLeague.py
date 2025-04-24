@@ -3,8 +3,7 @@ import pandas as pd
 import requests
 from io import BytesIO
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_folder='static', template_folder='templates')
 # FPL API endpoints
 league_url_template = 'https://fantasy.premierleague.com/api/leagues-classic/{}/standings/'
 entry_url_template = 'https://fantasy.premierleague.com/api/entry/{}/history/'
