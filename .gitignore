@@ -1,0 +1,48 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore virtual environments
+venv/
+.env/
+ENV/
+env/
+
+# Ignore environment variable files
+*.env
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Docker-related stuff (optional)
+*.log
+*.pid
+*.sock
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyd
+*.pdb
+
+# Ignore coverage and testing outputs
+htmlcov/
+coverage.xml
+.cache/
+.pytest_cache/
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Ignore database files
+*.sqlite3
+*.db
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
