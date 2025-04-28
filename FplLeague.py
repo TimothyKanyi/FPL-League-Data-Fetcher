@@ -3,6 +3,8 @@ import pandas as pd
 import requests
 from io import BytesIO
 
+MAX_MANAGERS = 100  # Set your desired limit here
+
 app = Flask(__name__, static_folder='static', template_folder='templates')
 # FPL API endpoints
 league_url_template = 'https://fantasy.premierleague.com/api/leagues-classic/{}/standings/'
@@ -34,6 +36,14 @@ def fetch_league_data(league_id, start_gw=None, end_gw=None):
         else:
             break
 
+
+        # LIMIT managers here
+        truncated = False
+    if len(all_managers) > MAX_MANAGERS:
+        all_managers = all_managers[:MAX_MANAGERS]
+        truncated = True
+
+
     all_gameweeks_data = []
 
     for manager in all_managers:
@@ -64,7 +74,7 @@ def fetch_league_data(league_id, start_gw=None, end_gw=None):
             df = df[cols_to_keep]
         except Exception:
             pass  # fallback to all columns if error
-    return df
+    return df, truncated
 
 def get_gameweek_champions(df):
     """
@@ -110,11 +120,12 @@ def fetch_data():
         if not league_id:
             return jsonify({"error": "Please provide a league code"}), 400
 
-        df = fetch_league_data(league_id, start_gw, end_gw)
+        df, truncated = fetch_league_data(league_id, start_gw, end_gw)
         champions_df = get_gameweek_champions(df)
         data = {
             "league_data": df.to_dict(orient='records'),
-            "champions_data": champions_df.to_dict(orient='records')
+            "champions_data": champions_df.to_dict(orient='records'),
+            "truncated": truncated
         }
         return jsonify(data)
     except Exception as e:

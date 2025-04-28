@@ -112,6 +112,15 @@ document.getElementById("display-btn").addEventListener("click", async () => {
         }
 
         const data = await response.json();
+
+            // Show or hide the truncated warning
+        const warningDiv = document.getElementById("truncated-warning");
+        if (data.truncated) {
+            warningDiv.style.display = "block";
+        } else {
+            warningDiv.style.display = "none";
+        }
+        
         displayLeagueData(data.league_data);
         displayChampionsData(data.champions_data);
 
